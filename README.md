@@ -1,211 +1,78 @@
-# Orchestra - Landing Page
+# Orchestra
 
-> Your AI product manager. Drop in your requirements, it assigns tasks to the right devs, learns how your team works, and translates code progress into plain English in real time.
+<p align="center">
+  <strong>The landing experience for an AI operating system for engineering teams.</strong>
+</p>
 
----
+<p align="center">
+  Orchestra turns requirements into distributed developer tasks, tracks progress from real code activity, and translates delivery status back into plain English for managers.
+</p>
 
-## What This Is
+<p align="center">
+  <a href="https://unihackdemo.vercel.app">Live Landing Page</a>
+  ·
+  <a href="https://unihackjira.vercel.app/">UniHackJira Demo</a>
+  ·
+  <a href="https://commit4commit-vscode-clone.vercel.app/">Commit4Commit Demo</a>
+</p>
 
-The Orchestra marketing and demo landing page. Built in React + Vite. It contains the full product walkthrough, the interactive 7-step demo, waitlist signup, and links to both live platform previews.
+## What This Repo Is
 
----
+This repository contains the marketing and demo landing page for the Orchestra project. It is a React + Vite single-page site designed to explain the product, walk visitors through the multi-agent workflow, preview the manager and developer interfaces, and capture waitlist signups.
 
-## Tech Stack
+The page is built to sell the idea clearly:
 
-- React 18
-- Vite
-- Google Fonts - Bebas Neue, Syne, DM Mono
-- Plain CSS with custom properties, no Tailwind or UI libraries
-- IntersectionObserver for scroll-triggered animations
-- No backend required for local use
-- Optional waitlist POST integration via `VITE_WAITLIST_API_URL`
+- managers upload requirements instead of chasing updates
+- developers receive role-matched work inside their environment
+- commits are interpreted into progress signals automatically
+- blockers and sprint health are surfaced without another standup
 
----
+## Project Ecosystem
 
-## Getting Started
+Orchestra is presented across three related experiences:
+
+| Experience | Purpose | Repository | Live Demo |
+| --- | --- | --- | --- |
+| Orchestra Landing Page | Main product story, workflow walkthrough, waitlist | This repo | [unihackdemo.vercel.app](https://unihackdemo.vercel.app) |
+| UniHackJira | Jira-style management experience | [AdiBoi007/unihackJira](https://github.com/AdiBoi007/unihackJira) | [unihackjira.vercel.app](https://unihackjira.vercel.app/) |
+| Commit4Commit | VS Code-inspired developer experience | [litkeys/Commit4Commit](https://github.com/litkeys/Commit4Commit) | [commit4commit-vscode-clone.vercel.app](https://commit4commit-vscode-clone.vercel.app/) |
+
+## Highlights
+
+- Cinematic landing page with a strong product narrative
+- Animated agent-system walkthrough explaining the Orchestra workflow
+- Interactive 7-step demo from PRD upload to live insights
+- Manager-facing product preview for `CodeSync Insights`
+- Developer-facing product preview for the `Orchestra` extension
+- Waitlist form with optional API integration
+- Responsive single-page build ready for Vercel deployment
+
+## Built With
+
+- React 19
+- Vite 8
+- Plain CSS
+- ESLint
+
+## Local Development
 
 ```bash
-# Install dependencies
 npm install
-
-# Start dev server
 npm run dev
+```
 
-# Build for production
+Production commands:
+
+```bash
 npm run build
-
-# Preview production build
 npm run preview
 ```
 
----
-
-## Project Structure
-
-The current implementation ships as a single-page app rather than a split component tree.
-
-```text
-src/
-  App.jsx              # Root page component, interactive demo, waitlist logic
-  App.css              # Global styles, design system, atmosphere, section visuals
-  index.css            # Base resets
-  main.jsx             # React entry
-  assets/
-    hero.png
-    react.svg
-    vite.svg
-
-public/
-  favicon.svg
-  icons.svg
-
-.env.example           # Optional preview/API URLs
-index.html             # Font loading and app shell
-vite.config.js         # Vite config
-```
-
----
-
-## The 7-Step Demo
-
-The interactive demo is the centerpiece of the page. It walks through the complete Orchestra workflow:
-
-| Step | Label | What it shows |
-| --- | --- | --- |
-| 01 | TEAM SETUP | Manager defines team roles - decided once, used forever |
-| 02 | PRD UPLOAD | Manager uploads requirements doc, Big Boss absorbs it |
-| 03 | BREAKDOWN | PRD broken into 6 requirements and 12 executable tasks |
-| 04 | DISTRIBUTION | PTM Agent sends tasks to the right dev via VS Code plugin |
-| 05 | AGENT SCANS | Dev commits code, agent reads diff and updates progress |
-| 06 | REPORTER | Manager asks a question, Reporter Agent queries all dev agents |
-| 07 | DASHBOARD | Insights dashboard shows everything in plain English |
-
-Navigation: click `NEXT` / `PREV` or use the left and right arrow keys.
-
----
-
-## Updating Live Preview URLs
-
-The live preview buttons use Vite env vars with fallbacks defined in `src/App.jsx`:
-
-```bash
-VITE_INSIGHTS_URL=https://insights.orchestra.dev
-VITE_ORCHESTRA_URL=https://orchestra.dev
-```
-
-For local development, create `.env.local`:
-
-```bash
-VITE_INSIGHTS_URL=https://your-insights-url.com
-VITE_ORCHESTRA_URL=https://your-vscode-url.com
-```
-
-These power:
-
-- The Step 7 demo CTA buttons
-- The Insights preview CTA
-- The Orchestra preview CTA
-- The "Who It's For" preview buttons
-
----
-
-## Updating Waitlist Spots
-
-The waitlist stats are derived in `src/App.jsx` from a base of `23` taken spots and a total of `50`:
-
-```js
-const takenSpots = Math.min(23 + submissions.length, 50)
-const remainingSpots = Math.max(50 - takenSpots, 0)
-```
-
-To change the displayed counts, update that base value in `src/App.jsx`.
-
-To connect the form to a real backend, set:
-
-```bash
-VITE_WAITLIST_API_URL=https://your-api.com/waitlist
-```
-
-If `VITE_WAITLIST_API_URL` is present, the form will POST:
-
-```json
-{ "email": "name@example.com" }
-```
-
-If it is not present, submissions are stored locally in component state only.
-
----
-
-## Design System
-
-### Colors
-
-```css
---bg:       #000000; /* root background */
---panel:    #0a0a0a; /* card backgrounds */
---surface:  #111111; /* elevated surfaces */
---border:   #1a1a1a; /* all borders */
---purple:   #7c3aed; /* primary brand accent */
---blue:     #2563eb; /* ready state / UI accent */
---green:    #059669; /* complete / healthy */
---amber:    #d97706; /* in progress / at risk */
---red:      #dc2626; /* blocked / critical */
-```
-
-### Fonts
-
-| Font | Used for |
-| --- | --- |
-| Bebas Neue | Large display text, hero title, headline numerics |
-| Syne | Body text, labels, descriptions, nav, buttons |
-| DM Mono | Metadata, timestamps, chips, tags, technical labels |
-
-### Atmosphere Layers
-
-Three fixed layers sit behind all content in `src/App.css`:
-
-- `.grain` - subtle noise texture
-- `.scanlines` - faint horizontal scan lines
-- `.orb-1` / `.orb-2` - drifting blurred purple and blue gradients
-
-All are `pointer-events: none` and stay behind the page content.
-
----
-
-## Scroll Animations
-
-Scroll-triggered animations use the `useScrollReveal` hook defined inside `src/App.jsx`.
-
-```js
-const [ref, isVisible] = useScrollReveal({ threshold: 0.15 })
-
-<div ref={ref} className={cx('my-element', isVisible && 'visible')} />
-```
-
-Typical CSS pattern:
-
-```css
-.my-element {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 500ms ease, transform 500ms ease;
-}
-
-.my-element.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-```
-
-Threshold defaults to `0.15`, meaning the element reveals when roughly 15% of it is in view.
-
----
-
 ## Environment Variables
 
-No environment variables are required to run the landing page locally.
+No environment variables are required for local development.
 
-Optional variables:
+Optional configuration:
 
 ```bash
 VITE_INSIGHTS_URL=https://insights.orchestra.dev
@@ -213,36 +80,46 @@ VITE_ORCHESTRA_URL=https://orchestra.dev
 VITE_WAITLIST_API_URL=https://api.orchestra.dev/waitlist
 ```
 
-See [.env.example](/Users/adhirajdogra/Desktop/BigMac/unihackdemo/.env.example) for the current shape.
+These control:
 
----
+- the manager preview link
+- the developer preview link
+- the waitlist form submission endpoint
+
+## App Structure
+
+```text
+src/
+  App.jsx        Main landing page, workflow demo, waitlist logic
+  App.css        Full visual system and section styling
+  index.css      Global resets
+  main.jsx       App entry point
+
+public/
+  favicon.svg
+  icons.svg
+```
+
+## Experience Flow
+
+The landing page is structured around the full Orchestra story:
+
+1. The coordination problem inside software teams
+2. The six-agent intelligence layer
+3. The workflow from requirements to task distribution
+4. Real-time reporting for managers in CodeSync Insights
+5. In-editor support for developers inside Orchestra
+6. The product advantages and target users
+7. The private beta waitlist
 
 ## Deployment
 
-Works on any static host.
+This project is a static frontend and works cleanly on Vercel.
 
-```bash
-# Vercel
-vercel --prod
+Primary live deployment:
 
-# Netlify
-npm run build
-netlify deploy --prod --dir=dist
+- [unihackdemo.vercel.app](https://unihackdemo.vercel.app)
 
-# Cloudflare Pages
-# Build command: npm run build
-# Output directory: dist
-```
+## Why This README Exists
 
----
-
-## Browser Support
-
-Tested against modern evergreen browsers:
-
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-Primary audience is desktop. The layout is responsive down to mobile widths, but the page is designed first for desktop presentation.
+The goal of this README is simple: if someone lands on the repo, they should understand the product, see the full ecosystem, find every important link immediately, and know how to run the project locally in under a minute.
