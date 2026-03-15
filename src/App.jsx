@@ -8,9 +8,9 @@ import {
 import './App.css'
 
 const INSIGHTS_URL =
-  import.meta.env.VITE_INSIGHTS_URL ?? 'https://insights.orchestra.dev'
+  import.meta.env.VITE_INSIGHTS_URL ?? 'https://unihackjira.vercel.app'
 const ORCHESTRA_URL =
-  import.meta.env.VITE_ORCHESTRA_URL ?? 'https://orchestra.dev'
+  import.meta.env.VITE_ORCHESTRA_URL ?? 'https://commit4commit-vscode-clone.vercel.app'
 const WAITLIST_API_URL = import.meta.env.VITE_WAITLIST_API_URL ?? ''
 
 const problemStats = [
@@ -336,7 +336,7 @@ const advantages = [
 
 const audienceCards = [
   {
-    eyebrow: '✳ CODESYNC INSIGHTS',
+    eyebrow: '✳ ORCHESTRA INSIGHTS',
     title: 'THE MANAGER',
     body: [
       "The non-technical founder who hired engineers but can't tell if they're working or not.",
@@ -1157,7 +1157,7 @@ function DashboardVisual() {
             <span className="dot amber" />
             <span className="dot green" />
           </div>
-          <div className="insights-browser-url">insights.orchestra.dev</div>
+          <div className="insights-browser-url">unihackjira.vercel.app</div>
         </div>
 
         <div className="insights-browser-content">
@@ -1483,7 +1483,7 @@ function InsightsPreview() {
         </div>
         <div className="browser-url">
           <span className="url-lock">LOCK</span>
-          <span className="url-text">insights.orchestra.dev</span>
+          <span className="url-text">unihackjira.vercel.app</span>
         </div>
       </div>
       <div className="browser-content">
@@ -1904,7 +1904,7 @@ function App() {
           <div className="section-inner">
             <SectionNumber>04</SectionNumber>
             <p className="preview-eyebrow">FOR MANAGERS AND EXECUTIVES</p>
-            <h2 className="preview-title">CODESYNC INSIGHTS</h2>
+            <h2 className="preview-title">ORCHESTRA INSIGHTS</h2>
             <p className="preview-sub">
               The entire engineering org. Four numbers. One honest chat interface.
             </p>
